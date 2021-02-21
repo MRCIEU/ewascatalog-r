@@ -24,6 +24,7 @@
 #' res <- ewascatalog("27040690","study")
 #' 
 #' @author James R Staley <js16174@bristol.ac.uk>
+#' @author Thomas Battram <thomas.battram@bristol.ac.uk>
 #' @export
 ewascatalog <- function(query,type=c("cpg","loc","region","gene","trait","efo","study"),
                         url="http://www.ewascatalog.org") {
@@ -38,16 +39,16 @@ ewascatalog <- function(query,type=c("cpg","loc","region","gene","trait","efo","
         query <- sub(" ", "+", tolower(query))
     }
     json_file <- paste0(url, "/api/?",type, "=", query)
-    json_data <- fromJSON(file=json_file)
+    json_data <- rjson::fromJSON(file=json_file)
     if(length(json_data)==0){
       return(NULL)
     }
     fields <- json_data$fields
     results <- as.data.frame(matrix(unlist(json_data$results), ncol=length(fields), byrow=T), stringsAsFactors=F)
     names(results) <- fields
-    for (field in c("n","n_studies","n_males","n_females","n_eur","n_eas","n_sas","n_afr","n_amr","n_oth"))
+    for (field in c("n","n_studies"))
         results[[field]] <- as.integer(results[[field]])
-    for (field in c("p","se","pos","age"))
+    for (field in c("p","se","pos"))
         results[[field]] <- as.numeric(results[[field]])
-    results
+    return(results)
 }
