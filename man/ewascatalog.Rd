@@ -4,17 +4,16 @@
 \alias{ewascatalog}
 \title{ewascatalog}
 \usage{
-ewascatalog(cpgquery = NULL, regionquery = NULL, genequery = NULL,
-  traitquery = NULL)
+ewascatalog(
+  query,
+  type = c("cpg", "loc", "region", "gene", "trait", "efo", "study"),
+  url = "http://www.ewascatalog.org"
+)
 }
 \arguments{
-\item{cpgquery}{a vector of CpG sites.}
+\item{query}{Query text.}
 
-\item{regionquery}{a vector of genomic regions.}
-
-\item{genequery}{a vector of gene names.}
-
-\item{traitquery}{a vector of trait names.}
+\item{type}{Type of query, either 'cpg', 'region', 'gene', 'trait', 'efo', 'study' (Default: 'cpg').}
 }
 \value{
 Data frame of EWAS Catalog results.
@@ -24,17 +23,24 @@ ewascatalog queries the EWAS Catalog from R.
 }
 \examples{
 # CpG
-res <- ewascatalog(cpgquery="cg00029284")
+res <- ewascatalog("cg00029284","cpg")
 
 # Region
-res <- ewascatalog(regionquery="6:15000000-25000000")
+res <- ewascatalog("6:15000000-25000000","region")
 
 # Gene
-res <- ewascatalog(genequery="FTO")
+res <- ewascatalog("FTO","gene")
 
 # Trait
-res <- ewascatalog(traitquery="body mass index")
+res <- ewascatalog("body mass index","trait")
+
+# EFO
+res <- ewascatalog("EFO_0002950","efo")
+
+# Study
+res <- ewascatalog("27040690","study")
+
 }
 \author{
-James R Staley <jrstaley95@gmail.com>
+James R Staley <js16174@bristol.ac.uk>
 }
