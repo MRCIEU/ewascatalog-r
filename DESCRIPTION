@@ -8,9 +8,11 @@ Authors@R: c(
 	person("Matthew", "Suderman", email = "matthew.suderman@bristol.ac.uk", role = c("aut")))
 Description: R package to query the EWAS Catalog from R.
 Depends: R (>= 3.2.0), methods
-License: GPL (>= 2)
+License: MIT + file LICENSE
 ByteCompile: TRUE
 LazyData: TRUE
 Encoding: UTF-8
 Imports: rjson
 RoxygenNote: 7.1.1
+Suggests: 
+    testthat

@@ -14,6 +14,8 @@ ewascatalog(
 \item{query}{Query text.}
 
 \item{type}{Type of query, either 'cpg', 'region', 'gene', 'trait', 'efo', 'study' (Default: 'cpg').}
+
+\item{url}{url of website to query - default is http://www.ewascatalog.org}
 }
 \value{
 Data frame of EWAS Catalog results.
@@ -23,24 +25,25 @@ ewascatalog queries the EWAS Catalog from R.
 }
 \examples{
 # CpG
-res <- ewascatalog("cg00029284","cpg")
+res <- ewascatalog("cg00029284", "cpg")
 
 # Region
-res <- ewascatalog("6:15000000-25000000","region")
+res <- ewascatalog("6:15000000-25000000", "region")
 
 # Gene
-res <- ewascatalog("FTO","gene")
+res <- ewascatalog("FTO", "gene")
 
 # Trait
-res <- ewascatalog("body mass index","trait")
+res <- ewascatalog("Alzheimers disease", "trait")
 
 # EFO
-res <- ewascatalog("EFO_0002950","efo")
+res <- ewascatalog("EFO_0002950", "efo")
 
 # Study
-res <- ewascatalog("27040690","study")
-
+res <- ewascatalog("27040690", "study")
 }
 \author{
 James R Staley <js16174@bristol.ac.uk>
+
+Thomas Battram <thomas.battram@bristol.ac.uk>
 }
