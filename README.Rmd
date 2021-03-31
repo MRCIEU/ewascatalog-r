@@ -30,7 +30,7 @@ devtools::install_github("MRCIEU/ewascatalog-r")
 ```
 ## Examples
 
-This is a basic example which shows you how to solve a common problem:
+The EWAS Catalog database (http://www.ewascatalog.org/) can be queried using the `ewascatalog()` function. Please see examples below:
 
 ```{r example}
 library(ewascatalog)
