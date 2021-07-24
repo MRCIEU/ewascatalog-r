@@ -55,3 +55,34 @@ ewascatalog <- function(query, type = c("cpg", "loc", "region", "gene", "trait",
   }
   return(results)
 }
+
+#' get_meta_data
+#'
+#' get_meta_data extracts all the meta-data from The EWAS Catalog 
+#'
+#' @return Tibble of all EWAS Catalog meta-data
+#' @examples
+#'
+#' studies <- get_meta_data()
+#' @author Thomas Battram <thomas.battram@bristol.ac.uk>
+#' @export
+get_meta_data <- function()
+{
+    # url <- "http://www.ewascatalog.org/api/?"
+    url <- "http://localhost:8080/api/?query=studies"
+    ## GET studies from api
+    data <- httr::GET(url)
+    ## extract json data from the GET object
+    data_json <- httr::content(data, "text")
+    ## convert to a list
+    data_list <- jsonlite::fromJSON(data_json, flatten = TRUE)
+    ## format to a tibble
+    data_tib <- tibble::as_tibble(data_list$results)
+    names(data_tib) <- data_list$fields
+    ## ADD BITS HERE TO CORRECT COLUMN CLASSES
+    return(data_tib)
+}
+
+
+
+
