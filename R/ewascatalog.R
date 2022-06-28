@@ -47,7 +47,7 @@ ewascatalog <- function(query, type = c("cpg", "loc", "region", "gene", "trait",
   fields <- json_data$fields
   results <- as.data.frame(matrix(unlist(json_data$results), ncol = length(fields), byrow = T), stringsAsFactors = F)
   names(results) <- fields
-  for (field in c("n")) {
+  for (field in c("n","n_studies")) {
     results[[field]] <- as.integer(results[[field]])
   }
   for (field in c("p", "se", "pos")) {
